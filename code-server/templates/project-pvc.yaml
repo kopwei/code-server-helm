@@ -6,7 +6,7 @@ metadata:
   name: {{ template "code-server.fullname" . }}-data
   annotations:
   {{- if .Values.persistence.storageClass }}
-    volume.beta.kubernetes.io/storage-class: {{ .Values.storageClass | quote }}
+    volume.beta.kubernetes.io/storage-class: {{ .Values.persistence.storageClass | quote }}
   {{- else }}
     volume.alpha.kubernetes.io/storage-class: default
   {{- end }}
