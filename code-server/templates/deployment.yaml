@@ -43,6 +43,9 @@ spec:
             httpGet:
               path: /
               port: http
+          volumeMounts:
+            - name: project-data
+              mountPath: /home/coder/project
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -56,4 +59,12 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      - name: project-data
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ template "code-server.fullname" . }}-data
+      {{- else }}
+        emptyDir: {}
       {{- end }}

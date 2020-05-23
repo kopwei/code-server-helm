@@ -70,3 +70,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistence:
+  enabled: False
+  accessMode: ReadWriteOnce
+  size: 8Gi
+  storageClass: default
