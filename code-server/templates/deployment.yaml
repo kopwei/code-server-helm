@@ -35,6 +35,12 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "code-server.fullname" . }}
+                  key: codeserver-password
           livenessProbe:
             httpGet:
               path: /
