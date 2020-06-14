@@ -39,7 +39,11 @@ spec:
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{- if .Values.codeserver.existingSecret }}
+                  name: {{ .Values.codeserver.existingSecret | quote }}
+                  {{- else }}
                   name: {{ template "code-server.fullname" . }}
+                  {{- end }}
                   key: codeserver-password
           livenessProbe:
             httpGet:

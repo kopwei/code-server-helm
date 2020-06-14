@@ -80,3 +80,4 @@ persistence:
 codeserver:
   # Password is mandatory
   password: "Q!6^H~#qhB)d5(Bp"
+  existingSecret: ""
